@@ -26,8 +26,8 @@ jobs:
             name: Create Cloudformation Stack
             command: |
               aws cloudformation deploy \
-                --template-file file://ec2.yml \
-                --parameters file://ec2.json \
+                --template-file ec2.yml \
+                --parameter-overrides file://ec2.json \
                 --stack-name xam-ec2-${CIRCLE_WORKFLOW_ID:0:5} \
                 --region us-east-1          
 
