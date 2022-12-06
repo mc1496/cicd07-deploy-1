@@ -1,0 +1,27 @@
+version: 2.1
+
+jobs:
+  say-hello:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: "Say hello"
+          command: "echo Hello, World!"
+  say-good-bye:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: "Say bye"
+          command: "echo Good bye, $XAM!"
+
+workflows:
+  say-hello-workflow:
+    jobs:
+      - say-hello
+      - say-good-bye:
+          requires:
+              - say-hello
